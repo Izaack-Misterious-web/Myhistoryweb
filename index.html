@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El Enigma</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    input, button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #mensaje-oculto {
+      display: none;
+      margin-top: 30px;
+      font-size: 18px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>La verdad se esconde donde nadie mira.</h1>
+  <p>Pero primero… ¿puedes responder esto?</p>
+  <p><em>"No tiene boca, pero grita. No tiene ojos, pero te ve. Vive donde mueres. ¿Qué es?"</em></p>
+
+  <input type="text" id="respuesta" placeholder="Tu respuesta aquí..." />
+  <button onclick="verificar()">Enviar</button>
+
+  <div id="mensaje-oculto">
+    <p><strong>Correcto...</strong> Ahora observa.</p>
+    <p style="font-size: 14px;">http://localhost/puerta.html</p>
+  </div>
+
+  <script>
+    const progreso = localStorage.getItem("progreso");
+if (progreso && progreso !== "puerta.html") {
+  if (confirm("¿Deseas continuar desde donde lo dejaste?")) {
+    window.location.href = progreso;
+  }
+}
+    function verificar() {
+      const entrada = document.getElementById("respuesta").value.toLowerCase().trim();
+      if (entrada === "espejo") {
+        document.body.style.backgroundColor = "#111";
+        document.getElementById("mensaje-oculto").style.display = "block";
+      } else {
+        alert("No es correcto... aún.");
+      }
+    }
+  </script>
+</body>
+</html>
+<a href="puerta.html" style="color: red;">Entrar</a>
